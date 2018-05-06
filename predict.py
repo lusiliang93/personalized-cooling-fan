@@ -5,7 +5,7 @@ import pickle
 from sklearn import datasets, svm
 
 
-filename = 'rf_model3.sav'
+filename = 'rf_model.sav'
 load_model = pickle.load(open(filename,'rb'))
 
 while (True):
@@ -22,12 +22,16 @@ while (True):
 	# features: temperature, humidity, skin
 	test = np.zeros(3)
 	#test = np.array([[-1.785714,-0.457604,-2.04924,21.7]])
-	test[0] = h
-	test[1] = t
+	test[0] = t
+	test[1] = h
 	test[2] = s
 	pred = load_model.predict(test)
-	
+	print pred
 
+	if (pred[0] > 0):
+		os.system('wemo switch "WeMo Insight" on')
+	else:
+		os.system('wemo switch "WeMo Insight" off')
 
 	# sleep for 3 seconds
 	time.sleep(3)
