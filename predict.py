@@ -5,7 +5,7 @@ import pickle
 from sklearn import datasets, svm
 
 
-filename = 'rf_model.sav'
+filename = 'rf_model3.sav'
 load_model = pickle.load(open(filename,'rb'))
 
 while (True):
@@ -17,16 +17,16 @@ while (True):
 	t = temperature.json()['result']
 	skin = requests.get('https://api.particle.io/v1/devices/28003a000c47343438323536/skin?access_token=8608ee061d524b0682c1880998688651a14b73de')
 	s = skin.json()['result']
-	print(h,t,s)
+	print(t,h,s)
 	# example
 	# features: temperature, humidity, skin
-	test = np.zeros(3)
-	#test = np.array([[-1.785714,-0.457604,-2.04924,21.7]]).
-	test[0] = t
-	test[1] = h
-	test[2] = s
-	pred = load_model.predict(test)
-	print pred
+	test = []
+	#test = np.array([[-1.785714,-0.457604,-2.04924]])
+	test.append(t)
+	test.append(h)
+	test.append(s)
+	pred = load_model.predict(np.array([test]))
+	print(pred)
 
 	if (pred[0] > 0):
 		os.system('wemo switch "WeMo Insight" on')
