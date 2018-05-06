@@ -21,7 +21,7 @@ while (True):
 	# example
 	# features: temperature, humidity, skin
 	test = np.zeros(3)
-	#test = np.array([[-1.785714,-0.457604,-2.04924,21.7]])
+	#test = np.array([[-1.785714,-0.457604,-2.04924,21.7]]).
 	test[0] = t
 	test[1] = h
 	test[2] = s
