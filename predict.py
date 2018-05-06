@@ -5,7 +5,7 @@ import pickle
 from sklearn import datasets, svm
 
 
-filename = 'svm_model.sav'
+filename = 'rf_model3.sav'
 load_model = pickle.load(open(filename,'rb'))
 
 while (True):
@@ -19,8 +19,12 @@ while (True):
 	s = skin.json()['result']
 	print(h,t,s)
 	# example
-	# features: temperature_normal, humidity_normal, skin_normal, clothing
-	test = np.array([[-1.785714,-0.457604,-2.04924,21.7]])
+	# features: temperature, humidity, skin
+	test = np.zeros(3)
+	#test = np.array([[-1.785714,-0.457604,-2.04924,21.7]])
+	test[0] = h
+	test[1] = t
+	test[2] = s
 	pred = load_model.predict(test)
 	
 
